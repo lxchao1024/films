@@ -20,13 +20,13 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login(User user) {
-        if (StringUtils.isEmpty(user.getName()) || StringUtils.isEmpty(user.getPassword())) {
+        if (StringUtils.isEmpty(user.getUsername()) || StringUtils.isEmpty(user.getPassword())) {
             return "请输入用户名和密码！";
         }
         //用户认证信息
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(
-                user.getName(),
+                user.getUsername(),
                 user.getPassword()
         );
         try {
