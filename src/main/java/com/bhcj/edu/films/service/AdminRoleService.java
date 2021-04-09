@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author Evan
- * @date 2019/11
- */
 @Service
 public class AdminRoleService {
     @Autowired

@@ -14,10 +14,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author Evan
- * @date 2019/11
- */
 @Service
 public class AdminRoleMenuService {
     @Autowired
@@ -27,9 +23,9 @@ public class AdminRoleMenuService {
         return adminRoleMenuDAO.findAllByRid(rid);
     }
 
-//    public List<AdminRoleMenu> findAllByRid(List<Integer> rids) {
-//        return adminRoleMenuDAO.findAllByRid(rids);
-//    }
+    public List<AdminRoleMenu> findAllByRid(List<Integer> rids) {
+        return adminRoleMenuDAO.findAllByRidIn(rids);
+    }
 
     public void save(AdminRoleMenu rm) {
         adminRoleMenuDAO.save(rm);

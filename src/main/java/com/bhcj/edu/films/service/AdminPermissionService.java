@@ -12,10 +12,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * @author Evan
- * @date 2019/11
- */
 @Service
 public class AdminPermissionService {
     @Autowired
@@ -56,17 +52,17 @@ public class AdminPermissionService {
         return adminPermissionDAO.findAllById(pids);
     }
 
-//    public Set<String> listPermissionURLsByUser(String username) {
-//        List<Integer> rids = adminRoleService.listRolesByUser(username)
-//                .stream().map(AdminRole::getId).collect(Collectors.toList());
+    public Set<String> listPermissionURLsByUser(String username) {
+        List<Integer> rids = adminRoleService.listRolesByUser(username)
+                .stream().map(AdminRole::getId).collect(Collectors.toList());
 
-//        List<Integer> pids = adminRolePermissionDAO.findAllByRid(rids)
-//                .stream().map(AdminRolePermission::getPid).collect(Collectors.toList());
+        List<Integer> pids = adminRolePermissionDAO.findAllByRidIn(rids)
+                .stream().map(AdminRolePermission::getPid).collect(Collectors.toList());
 
-//        List<AdminPermission> perms = adminPermissionDAO.findAllById(pids);
+        List<AdminPermission> perms = adminPermissionDAO.findAllById(pids);
 
-//        Set<String> URLs = perms.stream().map(AdminPermission::getUrl).collect(Collectors.toSet());
+        Set<String> URLs = perms.stream().map(AdminPermission::getUrl).collect(Collectors.toSet());
 
-//        return URLs;
-//    }
+        return URLs;
+    }
 }
