@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,6 +73,15 @@ public class UserService {
         email = HtmlUtils.htmlEscape(email);
         user.setEmail(email);
         user.setEnabled(true);
+        user.setBalance(100000);
+//        List<AdminRole> roles = new ArrayList<>();
+//        AdminRole adminRole = new AdminRole();
+//        adminRole.setEnabled(true);
+//        adminRole.setId(3);
+//        adminRole.setName("visitor");
+//        adminRole.setNameZh("访客");
+//        roles.add(adminRole);
+//        user.setRoles(roles);
 
         if (username.equals("") || password.equals("")) {
             return 0;
@@ -117,6 +127,7 @@ public class UserService {
         userInDB.setName(user.getName());
         userInDB.setPhone(user.getPhone());
         userInDB.setEmail(user.getEmail());
+        userInDB.setBalance(user.getBalance());
         userDAO.save(userInDB);
         adminUserRoleService.saveRoleChanges(userInDB.getId(), user.getRoles());
     }

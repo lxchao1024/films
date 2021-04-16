@@ -59,6 +59,10 @@ public class BookService {
     }
 
     public List<Book> listByCategory(int cid) {
+        if (cid == 0) {
+            System.out.println("cid: " + cid);
+            return bookDAO.findAll();
+        }
         Category category = categoryService.get(cid);
         return bookDAO.findAllByCategory(category);
     }

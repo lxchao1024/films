@@ -11,10 +11,10 @@ public class MenuController {
     @Autowired
     AdminMenuService adminMenuService;
 
-//    @GetMapping("/api/menu")
-//    public Result menu() {
-//        return ResultFactory.buildSuccessResult(adminMenuService.getMenusByCurrentUser());
-//    }
+    @GetMapping("/api/menu")
+    public Result menu() {
+        return ResultFactory.buildSuccessResult(adminMenuService.getMenusByCurrentUser());
+    }
 
     @GetMapping("/api/admin/role/menu")
     public Result listAllMenus() {

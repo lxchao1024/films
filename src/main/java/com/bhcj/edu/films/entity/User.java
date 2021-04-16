@@ -66,4 +66,9 @@ public class User {
      */
     @Transient
     private List<AdminRole> roles;
+
+    /**
+     * 用户余额
+     */
+    private double balance;
 }
