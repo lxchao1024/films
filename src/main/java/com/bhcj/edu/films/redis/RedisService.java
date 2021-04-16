@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RedisService {
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     public void set(String key, Object value, long time) {
         redisTemplate.opsForValue().set(key, value, time, TimeUnit.SECONDS);

@@ -23,16 +23,7 @@ public class BookService {
     private RedisService redisService;
 
     public List<Book> list() {
-        List<Book> books;
-        String key = "booklist";
-        Object bookCache = redisService.get(key);
-
-        if (bookCache == null) {
-            books = bookDAO.findAll(Sort.by(Sort.Direction.DESC, "id"));
-            redisService.set(key, books);
-        } else {
-            books = CastUtils.objectConvertToList(bookCache, Book.class);
-        }
+        List<Book> books = bookDAO.findAll(Sort.by(Sort.Direction.DESC, "id"));
         return books;
     }
 
@@ -59,10 +50,6 @@ public class BookService {
     }
 
     public List<Book> listByCategory(int cid) {
-        if (cid == 0) {
-            System.out.println("cid: " + cid);
-            return bookDAO.findAll();
-        }
         Category category = categoryService.get(cid);
         return bookDAO.findAllByCategory(category);
     }
